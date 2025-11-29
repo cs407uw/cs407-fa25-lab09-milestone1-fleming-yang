@@ -147,8 +147,6 @@ fun GameScreen(viewModel: BallViewModel) {
                 modifier = Modifier
                     .size(ballSize)
                     .offset {
-                        // TODO: Use the collected ballPosition to set the offset
-                        // Hint: You need to convert Float to Int
                         IntOffset(
                             x = ballPosition.x.roundToInt(),
                             y = ballPosition.y.roundToInt()

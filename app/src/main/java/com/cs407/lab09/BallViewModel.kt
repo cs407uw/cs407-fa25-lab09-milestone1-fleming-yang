@@ -50,10 +50,10 @@ class BallViewModel : ViewModel() {
 
                 // Update the ball's position and velocity
                 // Hint: The sensor's x and y-axis are inverted
-                 currentBall.updatePositionAndVelocity(xAcc = event.values[0],
-                                                       yAcc = -event.values[1],
+                currentBall.updatePositionAndVelocity(xAcc = event.values[0],
+                                                       yAcc = event.values[1],
                                                        dT = dT)
-                Log.i("LOGS", currentBall.posX.toString() + " and " + currentBall.posY.toString())
+                // Log.i("LOGS", currentBall.posX.toString() + " and " + currentBall.posY.toString())
                 // Update the StateFlow to notify the UI
                  _ballPosition.update { Offset(currentBall.posX, currentBall.posY) }
             }
@@ -68,7 +68,7 @@ class BallViewModel : ViewModel() {
          ball?.reset()
 
         // Update the StateFlow with the reset position
-         ball?.let { _ballPosition.value = Offset.Zero }
+        ball?.let { _ballPosition.value = Offset(it.posX, it.posY) }
 
         // Reset the lastTimestamp
          lastTimestamp = 0L
